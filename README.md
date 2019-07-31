@@ -86,9 +86,9 @@ Both functions take a single options object as an argument, and return
 either the result value, or a Promise to the result value if the
 methods in the options argument ever return a Promise.
 
-* `treeverse.depth` - Perform a breadth-first traversal.  That is, walk
+* `treeverse.breadth` - Perform a breadth-first traversal.  That is, walk
   across node siblings before traversing node children.
-* `treeverse.breadth` - Perform a depth-first traversal.  That is, walk
+* `treeverse.depth` - Perform a depth-first traversal.  That is, walk
   down into child nodes before traversing siblings.
 
 ## OPTIONS
