@@ -4,6 +4,14 @@
   "description": "Walk any kind of tree structure depth- or breadth-first. Supports promises and advanced map-reduce operations with a very small API.",
   "author": "Isaac Z. Schlueter <i@izs.me> (https://izs.me)",
   "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/npm/treeverse.git"
+  },
+  "bugs": {
+    "url": "https://github.com/npm/treeverse/issues"
+  },
+  "homepage": "https://github.com/npm/treeverse#readme",
   "scripts": {
     "test": "tap",
     "snap": "tap",
