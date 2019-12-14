@@ -24,6 +24,9 @@ const {depth, breadth} = require('treeverse')
 // otherwise returns the result of leave, or visit if no leave function
 // provided.
 depth({
+  // the root node where we start the traversal
+  tree: rootNode,
+
   visit (node) {
     // optional
     // called upon descent into the node.
@@ -60,6 +63,9 @@ depth({
 // note that only a visit() function is supported here, since a node's
 // children are typically traversed much later in the process.
 breadth({
+  // the root node where we start the traversal
+  tree: rootNode,
+
   visit (node) {
     // optional, but a no-op if not provided.
     // called when this node is encountered in the traversal.
@@ -94,6 +100,7 @@ function is provided, or leave.  If any method along the way returns a
 promise, then the top level function will return a promise which resolves
 to the result of visiting (and leaving) the top node in the tree.
 
+* `tree` - The initial node where the traversal begins.
 * `visit(node)` - Function to call upon visiting a node.
 * `leave(node, children)` - (Depth only) Function to call upon leaving a
   node, once all of its children have been visited, and potentially left.
