@@ -22,5 +22,16 @@
   "files": [
     "index.js",
     "lib/"
+  ],
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/npm/treeverse.git"
+  },
+  "keywords": [
+    "tree",
+    "traversal",
+    "depth first search",
+    "breadth first search"
   ]
 }
