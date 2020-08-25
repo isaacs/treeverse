@@ -21,6 +21,15 @@ const acyclic = {
   ],
 }
 
+const deep = {
+  _name: 'root',
+  children: [],
+}
+for (let walker = deep, i = 0; i < 10000; i++) {
+  walker.children.push({ _name: `${i}`, children: [] })
+  walker = walker.children[0]
+}
+
 const runTest = tree => t => {
   const acc = []
   const accum = acc => n => {
@@ -43,7 +52,7 @@ const runTest = tree => t => {
     breadth({
       ...opt,
       visit,
-      filter: node => node._name !== 'd',
+      filter: node => node._name !== 'd' && node._name !== '10',
     })
     t.matchSnapshot(acc, 'with filter')
   }
@@ -67,13 +76,40 @@ const runTest = tree => t => {
     }).then(() => acc), 'async visit')
   }
 
-  t.matchSnapshot(breadth({
+  {
+    const acc = []
+    const visit = accum(acc)
+    t.resolveMatchSnapshot(breadth({
+      ...opt,
+      getChildren: async n => getChildren(n),
+      visit: async n => visit(n),
+    }).then(() => acc), 'async getChildren and visit')
+  }
+
+  {
+    const acc = []
+    const visit = accum(acc)
+    t.resolveMatchSnapshot(breadth({
+      ...opt,
+      getChildren: n => {
+        const c = getChildren(n)
+        return Math.random() < 0.5 ? Promise.resolve(c) : c
+      },
+      visit: n => {
+        const res = visit(n)
+        return Math.random() < 0.5 ? Promise.resolve(res) : res
+      }
+    }).then(() => acc), 'maybe sync getChildren and visit')
+  }
+
+  t.equal(breadth({
     ...opt,
     visit: null,
-  }), 'no-op')
+  }), tree, 'no-op')
 
   t.end()
 }
 
 t.test('cyclic', runTest(cyclic))
 t.test('acyclic', runTest(acyclic))
+t.test('deep stack', runTest(deep))
