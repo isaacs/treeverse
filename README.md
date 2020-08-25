@@ -110,3 +110,15 @@ to the result of visiting (and leaving) the top node in the tree.
 * `filter` - Filter out child nodes from the traversal.  Note that this
   filters the entire branch of the tree, not just that one node.  That is,
   children of filtered nodes are not traversed either.
+
+## STACK DEPTH WARNING
+
+The `depth()` method uses recursion, so synchronous walks of very deeply
+nested trees will result in a stack overflow error.
+
+Breadth-first traversal uses a loop, and is stack-safe.
+
+It is possible to implement the depth method using a loop rather than
+recursion, but maintaining the `leave(node, [children])` API surface would
+be challenging when both a `leave` and `visit` method are used, and is not
+implemented at this time.
