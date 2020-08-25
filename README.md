@@ -113,12 +113,17 @@ to the result of visiting (and leaving) the top node in the tree.
 
 ## STACK DEPTH WARNING
 
-The `depth()` method uses recursion, so synchronous walks of very deeply
-nested trees will result in a stack overflow error.
+When a `leave` method is specified, then recursion is used, because
+maintaining state otherwise is challenging.  This means that using `leave`
+with a synchronous depth first traversal of very deeply nested trees will
+result in stack overflow errors.
 
-Breadth-first traversal uses a loop, and is stack-safe.
+To avoid this, either make one or more of the functions async, or do all of
+the work in the `visit` method.
 
-It is possible to implement the depth method using a loop rather than
-recursion, but maintaining the `leave(node, [children])` API surface would
-be challenging when both a `leave` and `visit` method are used, and is not
-implemented at this time.
+Breadth-first traversal always uses a loop, and is stack-safe.
+
+It is _possible_ to implement depth first traversal with a leave method
+using a loop rather than recursion, but maintaining the `leave(node,
+[children])` API surface would be challenging, and is not implemented at
+this time.
