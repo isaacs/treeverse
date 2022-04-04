@@ -5,21 +5,21 @@
 // to nodes, and the visit finds an optimal place in the tree
 // for that node.
 
-const {breadth} = require('../')
+const { breadth } = require('../')
 
 // our registry of package versions and dependencies.
 const manifests = {
-  a1: {name:'a',version:'1',deps:['b1','c2']},
-  b1: {name:'b',version:'1',deps:['c1','d2']},
-  c1: {name:'c',version:'1',deps:['d1','e1']},
-  c2: {name:'c',version:'2',deps:['d1','e1']},
-  d1: {name:'d',version:'1',deps:[]},
-  d2: {name:'d',version:'2',deps:[]},
-  e1: {name:'e',version:'1',deps:[]},
+  a1: { name: 'a', version: '1', deps: ['b1', 'c2'] },
+  b1: { name: 'b', version: '1', deps: ['c1', 'd2'] },
+  c1: { name: 'c', version: '1', deps: ['d1', 'e1'] },
+  c2: { name: 'c', version: '2', deps: ['d1', 'e1'] },
+  d1: { name: 'd', version: '1', deps: [] },
+  d2: { name: 'd', version: '2', deps: [] },
+  e1: { name: 'e', version: '1', deps: [] },
 }
 
 // starting tree, just a single dep
-const tree = {deps:['a1']}
+const tree = { deps: ['a1'] }
 
 const res = breadth({
   tree,
@@ -30,8 +30,9 @@ const res = breadth({
     // We could also just `return node` if in-place mutation was the goal.
     // Note that, because we're returning a different tree where the
     // mutation actually happens, it's important to capture the result.
-    if (node === tree)
+    if (node === tree) {
       return { name: 'root', deps: [...node.deps], children: [] }
+    }
 
     const rb = node.requiredBy
     let loc = rb.parent
@@ -69,9 +70,9 @@ const res = breadth({
   // in this case we care about the RESULT of the visit, not the original,
   // because we're building up a new tree separate from the original.
   getChildren (_, node) {
-    return node.deps.map(p => ({requiredBy: node, ...manifests[p]}))
+    return node.deps.map(p => ({ requiredBy: node, ...manifests[p] }))
   },
 })
 
-const {format} = require('tcompare')
+const { format } = require('tcompare')
 console.log(format(res))

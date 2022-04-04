@@ -8,24 +8,21 @@
 // add in their subsequent visit call.  See examples/deps.js for
 // an example of this.
 
-const {breadth} = require('../')
+const { breadth } = require('../')
 
 const tree =
 ['a',
   [
     ['b', [['c'], ['d']]],
-    ['e', [['f', ['g']]]]
-  ]
+    ['e', [['f', ['g']]]],
+  ],
 ]
 
 breadth({
   tree,
   visit (node) {
     console.log('visit', node[0])
-    return new Promise(res => setTimeout(() => {
-      node[0] = node[0].toUpperCase()
-      res()
-    }, 100))
+    node[0] = node[0].toUpperCase()
   },
   filter (node) {
     return node[0] !== 'f'
@@ -33,4 +30,6 @@ breadth({
   getChildren (node) {
     return node[1] || []
   },
-}).then(() => console.log(JSON.stringify(tree,0,2)))
+})
+
+console.log(JSON.stringify(tree, 0, 2))

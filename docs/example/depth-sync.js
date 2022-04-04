@@ -1,11 +1,11 @@
-const {depth} = require('../')
+const { depth } = require('../')
 
 const tree =
 ['a',
   [
     ['b', [['c'], ['d']]],
-    ['e', [['f', ['g']]]]
-  ]
+    ['e', [['f', ['g']]]],
+  ],
 ]
 
 const res = depth({
@@ -22,4 +22,4 @@ const res = depth({
   },
 })
 
-console.log(JSON.stringify(res,0,2))
+console.log(JSON.stringify(res, 0, 2))

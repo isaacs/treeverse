@@ -1,6 +1,6 @@
 // upper case all the nodes, filter out the f branch,
 // then flatten the whole thing
-const {depth} = require('../')
+const { depth } = require('../')
 
 const tree =
 ['a',
@@ -8,10 +8,10 @@ const tree =
     ['b', [['c'], ['d']]],
     ['e', [['f', ['g']]]],
     ['h', [['i', ['j', ['k']]]]],
-  ]
+  ],
 ]
 
-const res = depth({
+depth({
   tree,
   visit (node) {
     return [node[0].toUpperCase(), node[1]]
@@ -28,4 +28,4 @@ const res = depth({
       res(node[1])
     }, 200))
   },
-}).then(res => console.log(JSON.stringify(res,0,2)))
+}).then(res => console.log(JSON.stringify(res, 0, 2)))
