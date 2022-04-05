@@ -1,6 +1,6 @@
 {
   "name": "treeverse",
-  "version": "1.0.4",
+  "version": "2.0.0",
   "description": "Walk any kind of tree structure depth- or breadth-first. Supports promises and advanced map-reduce operations with a very small API.",
   "author": "GitHub Inc.",
   "license": "ISC",
