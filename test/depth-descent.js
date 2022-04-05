@@ -1,6 +1,5 @@
-const {depth} = require('../')
+const { depth } = require('..')
 const t = require('tap')
-const {format} = require('tcompare')
 
 const cyclic = {
   _name: 'a',
@@ -31,7 +30,6 @@ for (let walker = deep, i = 0; i < 10000; i++) {
 }
 
 const runTest = tree => t => {
-  const acc = []
   const accum = acc => n => {
     acc.push(n._name)
     return [n._name.toUpperCase()]
@@ -98,7 +96,7 @@ const runTest = tree => t => {
       visit: n => {
         const res = visit(n)
         return Math.random() < 0.5 ? Promise.resolve(res) : res
-      }
+      },
     }).then(() => acc), 'maybe sync getChildren and visit')
   }
 

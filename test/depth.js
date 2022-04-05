@@ -1,6 +1,5 @@
-const {depth} = require('../')
+const { depth } = require('..')
 const t = require('tap')
-const {format} = require('tcompare')
 
 const cyclic = {
   _name: 'a',

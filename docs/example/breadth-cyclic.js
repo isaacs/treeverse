@@ -1,5 +1,4 @@
-const {breadth} = require('../')
-const {format} = require('tcompare')
+const { breadth } = require('..')
 
 const cyclic = {
   _name: 'a',
