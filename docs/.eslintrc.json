@@ -1,0 +1,6 @@
+{
+  "rules": {
+    "promise/catch-or-return": "off",
+    "import/no-extraneous-dependencies": "off"
+  }
+}
