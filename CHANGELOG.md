@@ -1,5 +1,15 @@
 # Changelog
 
+## [3.0.0](https://github.com/npm/treeverse/compare/v2.0.0...v3.0.0) (2022-10-10)
+
+### ⚠️ BREAKING CHANGES
+
+* `treeverse` is now compatible with the following semver range for node: `^14.17.0 || ^16.13.0 || >=18.0.0`
+
+### Features
+
+* [`2866dc6`](https://github.com/npm/treeverse/commit/2866dc65db62b7a260f9268f99054cdec708be05) [#31](https://github.com/npm/treeverse/pull/31) postinstall for dependabot template-oss PR (@lukekarrys)
+
 ## [2.0.0](https://github.com/npm/treeverse/compare/v1.0.4...v2.0.0) (2022-04-05)
 
 
