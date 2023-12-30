@@ -258,7 +258,7 @@ jobs:
           else
             result="success"
           fi
-          echo "::set-output name=result::$result"
+          echo "result=$result" >> $GITHUB_OUTPUT
       - name: Conclude Check
         uses: LouisBrunner/checks-action@v1.3.1
         if: needs.update.outputs.check-id && always()
